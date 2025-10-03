@@ -5,7 +5,6 @@ import Providers from "./providers";
 import AuthProvider from "./AuthProvider";
 import Navbar from "@/components/Navbar";
 
-
 const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
 export const metadata: Metadata = {
@@ -25,11 +24,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Providers>
-          <AuthProvider>
-           
-             
-             {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </Providers>
       </body>
     </html>

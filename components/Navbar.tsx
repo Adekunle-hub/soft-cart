@@ -84,6 +84,7 @@ const Navbar: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
             onClick={() => router.push("/cart")}
             src={assets.cart_icon}
             alt="cart"
+            
           />
           <span className="absolute rounded-full flex items-center justify-center  bg-primary -top-1 -right-1 text-[10px] text-white font-medium h-4 w-4">
             {totalItemsInCart}

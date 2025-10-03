@@ -368,7 +368,7 @@ interface signInProps {
 const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
   const dispatch = useDispatch();
   const { user, userLoggedIn } = useSelector((state: RootState) => state.auth);
-  console.log(user);
+
   const route = useRouter();
 
   const initialForm = {
@@ -398,7 +398,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     if (showSignIn) setFormDetails(initialForm);
   }, [showSignIn]);
 
-  console.log("initialForm:", initialForm);
+  
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -415,9 +415,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
         }),
       });
 
-      if (!res.ok) {
-        console.log("Failed to check user");
-      }
+    
       const { exists } = await res.json();
 
       if (exists) {
@@ -430,7 +428,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     } else if (data.user) {
       const fullName = data.user.user_metadata?.fullName;
 
-      console.log("Sign In", data.user);
+     
       dispatch(
         setUser({
           ...data.user,
@@ -468,9 +466,9 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     e.preventDefault();
     const { error } = await supabase.auth.signOut();
     if (error) {
-      console.error("sign out errror", error);
+      alert("Unable to sign out")
     } else {
-      console.log("signout successful");
+      
       dispatch(setUser(null));
       setFormDetails(initialForm);
     }
@@ -497,7 +495,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
             "This email is already registered. Please sign in instead."
           );
         } else {
-          console.log("User signed up:", data);
+        
           setSuccessMsg(
             "Sign-up successful! Please check your email to confirm your account."
           );
@@ -507,9 +505,6 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
       setErrorMsg("Something went wrong.Please try again");
     }
   };
-  if (showSignIn) {
-    console.log("showSignIn:", showSignIn);
-  }
 
   return (
     <section className="relative">

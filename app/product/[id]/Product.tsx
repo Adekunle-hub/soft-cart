@@ -33,15 +33,16 @@ const Product = () => {
   const dispatch = useDispatch();
   const param = useParams();
   const id = param.id;
-  const userStatus = useSelector((state: RootState) => state.cart.userLoggedIn);
+
+  const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
     dispatch(setProducts(productsDummyData));
   }, []);
 
-  useEffect(()=>{
-    dispatch(clearAlert())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(clearAlert());
+  }, [dispatch]);
   const products = useSelector((state: RootState) => state.cart.products);
 
   const product = products.find((p) => p._id === id)!;
@@ -195,7 +196,7 @@ const Product = () => {
               <Button
                 size="soft"
                 onClick={() => {
-                  if (userStatus) {
+                  if (user) {
                     dispatch(addToCart(product._id));
                     dispatch(addAlert("✅ Item added to cart"));
                   } else {
@@ -208,8 +209,8 @@ const Product = () => {
               </Button>
               <Button
                 onClick={() => {
-                  if (userStatus) {
-                    dispatch(addToCart(product._id))
+                  if (user) {
+                    dispatch(addToCart(product._id));
                     router.push("/cart");
                   } else {
                     dispatch(addAlert("⚠️ Please Login"));

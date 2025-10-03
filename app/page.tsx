@@ -16,11 +16,11 @@ const HomePage = () => {
   return (
     <>
       <Navbar setShowSignIn={setShowSignIn} showSignIn={showSignIn} />
-      {
-        showSignIn && <SignIn setShowSignIn={setShowSignIn} showSignIn={showSignIn} />
-      }
-      
-      <div className="lg:px-32 md:px-16 px-6">
+      {showSignIn && (
+        <SignIn setShowSignIn={setShowSignIn} showSignIn={showSignIn} />
+      )}
+
+      <div className="lg:px-32 md:px-16 px-6 ">
         <Hero />
         <HomeProducts />
         <FeaturedProducts />
