@@ -11,6 +11,7 @@ import { setShippingDetails } from "@/store/cartSlice";
 import { RootState } from "@/store";
 import AddressAlert from "@/components/AddressAlert";
 import { useRouter } from "next/navigation";
+import SignIn from "@/components/SignIn";
 
 const page = () => {
   const initialFormData = {
@@ -25,6 +26,7 @@ const page = () => {
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
+   const [showSignIn, setShowSignIn] = useState(false);
 
   const isFormIncomplete = Object.values(formdata).some(
     (value) => value.trim() === ""
@@ -50,14 +52,15 @@ const page = () => {
     }, 3100);
   };
 
-  const newShippingDetails = useSelector(
-    (state: RootState) => state.cart.shippingDetails
-  );
+ 
 
   return (
     <section>
       {showAlert && <AddressAlert />}
-      <Navbar />
+      <Navbar setShowSignIn={setShowSignIn} showSignIn={showSignIn} />
+         {
+        showSignIn && <SignIn setShowSignIn={setShowSignIn} showSignIn={showSignIn} />
+      }
       <main className="lg:px-32 flex gap-y-[3rem] md:flex-row flex-col justify-between md:px-16 px-6 mt-14 ">
         <div>
           <h1 className="lg:text-3xl text-gray-500 md:text-2xl  mb-8">

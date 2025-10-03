@@ -9,10 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useRouter } from "next/navigation";
-import { addressDummyData, assets } from "@/assets/assets";
+
 
 const OrderSummary = () => {
   const [Address, setAddress] = useState<string>("");
