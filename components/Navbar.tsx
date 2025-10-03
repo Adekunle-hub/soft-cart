@@ -68,6 +68,7 @@ const Navbar: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
           </Button>
         ) : (
           <Button size="soft"
+           onClick={() => setShowSignIn((prev) => !prev)}
           className="bg-transparent hover:bg-transparent"
           >
             <Image src={assets.user_icon} alt="user icon" />
