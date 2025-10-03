@@ -69,7 +69,7 @@ const Cart = () => {
                 return (
                   <TableRow key={product._id} className="hover:!bg-white">
                     <TableCell className="w-1/2 text-sm p-2  md:text-base">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-start md:items-center flex-col md:flex-row gap-2 md:gap-4">
                         <Image
                           src={product.image[0]}
                           alt={product.name}
@@ -78,7 +78,7 @@ const Cart = () => {
                           className="p-4 bg-gray-500/10 rounded-lg"
                         />
                         <span>
-                          <h4> Play station</h4>
+                          <h4 className="hidden md:block"> {product.name}</h4>
                           <p
                             onClick={() =>
                               dispatch(removeFromCart(product._id))

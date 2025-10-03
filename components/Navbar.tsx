@@ -67,9 +67,10 @@ const Navbar: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
               user.email.split("@")[0][0].toUpperCase()}
           </Button>
         ) : (
-          <Button size="soft"
-           onClick={() => setShowSignIn((prev) => !prev)}
-          className="bg-transparent hover:bg-transparent"
+          <Button
+            size="soft"
+            onClick={() => setShowSignIn((prev) => !prev)}
+            className="bg-transparent hover:bg-transparent"
           >
             <Image src={assets.user_icon} alt="user icon" />
           </Button>
@@ -84,7 +85,6 @@ const Navbar: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
             onClick={() => router.push("/cart")}
             src={assets.cart_icon}
             alt="cart"
-            
           />
           <span className="absolute rounded-full flex items-center justify-center  bg-primary -top-1 -right-1 text-[10px] text-white font-medium h-4 w-4">
             {totalItemsInCart}
@@ -98,8 +98,7 @@ const Navbar: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
         >
           {user ? (
             <span className=" text-base flex items-center justify-center bg-primary text-white w-8 h-8 rounded-[100%]">
-              {user.user_metadata?.name ||
-                user.user_metadata?.full_name ||
+              {
                 user.email.split("@")[0][0].toUpperCase()}
             </span>
           ) : (

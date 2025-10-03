@@ -1,5 +1,3 @@
-
-
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
@@ -37,6 +35,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
   const [successMsg, setSuccessMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [formDetails, setFormDetails] = useState(initialForm);
+  
 
   useEffect(() => {
     const checkSession = async () => {
@@ -53,7 +52,6 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     if (showSignIn) setFormDetails(initialForm);
   }, [showSignIn]);
 
-  
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -70,7 +68,6 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
         }),
       });
 
-    
       const { exists } = await res.json();
 
       if (exists) {
@@ -83,7 +80,6 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     } else if (data.user) {
       const fullName = data.user.user_metadata?.fullName;
 
-     
       dispatch(
         setUser({
           ...data.user,
@@ -104,7 +100,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000",
+        redirectTo: process.env.NEXT_PUBLIC_SITE_URL,
       },
     });
     if (error) console.error("Error", error);
@@ -112,6 +108,7 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
       console.group("Redirecting");
     }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormDetails({ ...formDetails, [name]: value });
@@ -121,11 +118,11 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
     e.preventDefault();
     const { error } = await supabase.auth.signOut();
     if (error) {
-      alert("Unable to sign out")
+      alert("Unable to sign out");
     } else {
-      
       dispatch(setUser(null));
       setFormDetails(initialForm);
+      route.push("/");
     }
   };
 
@@ -150,7 +147,6 @@ const SignIn: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
             "This email is already registered. Please sign in instead."
           );
         } else {
-        
           setSuccessMsg(
             "Sign-up successful! Please check your email to confirm your account."
           );
