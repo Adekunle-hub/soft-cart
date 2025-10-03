@@ -9,7 +9,7 @@ const WebAlert = () => {
   const alerts = useSelector((state: RootState) => state.cart.alerts);
 
   return (
-    <div className="fixed top-[1rem] left-1/2  transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 z-50">
+    <div className="fixed top-[1rem] left-1/2 items-center justify-center transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 z-50">
       {alerts.map((alert, index) => (
         <SingleAlert
           key={alert.id}
@@ -37,7 +37,7 @@ function SingleAlert({
   useEffect(() => {
     const showTimer = setTimeout(() => {
       setVisible(true);
-      console.log("Alert fired")
+    
     }, 50);
     return () => clearTimeout(showTimer);
   }, []);
@@ -58,7 +58,7 @@ function SingleAlert({
 
   return (
     <Alert
-      className="bg-white w-[11rem] max-w-xs shadow-2xl ease-in-out  mx-auto transition-transform duration-300"
+      className="bg-white w-[8rem] md:w-[11rem]  max-w-xs shadow-2xl ease-in-out  mx-auto transition-transform duration-300"
       variant="default"
       style={{
         transform: visible
@@ -66,7 +66,7 @@ function SingleAlert({
           : `translateY(${index * 30 - 3000}px)`,
         position: "absolute",
         top: `${index * 50}px`,
-        left: "50%",
+       
         translate: "translateX(-50%)",
       }}
     >
