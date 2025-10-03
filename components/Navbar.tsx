@@ -62,8 +62,7 @@ const Navbar: React.FC<signInProps> = ({ showSignIn, setShowSignIn }) => {
             size="soft"
             className=" text-base flex cursor-pointer items-center justify-center bg-primary text-white w-8 h-8 rounded-[100%]"
           >
-            {user.user_metadata?.name ||
-              user.user_metadata?.full_name ||
+            {
               user.email.split("@")[0][0].toUpperCase()}
           </Button>
         ) : (
